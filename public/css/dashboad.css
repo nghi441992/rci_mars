@@ -327,3 +327,40 @@ body, table, div, form, ul, li, tr, td, a, span, h1, h2, h3, h4, h5 {
 	font-size:16px;
 	width:140px
 }
+/* css-ctung */
+.modal-login {
+    width: 300px;
+}
+.modal-body-login{
+	padding:10px 20px;
+}
+.login-btn{
+	margin-top: 20px;
+}
+.input-login input{
+	padding-left: 10px;
+}
+.user-nav{
+	position: relative;
+}
+.user-logout{
+	position: absolute;
+	bottom: -25px;
+	right: 20px;
+	display: none;
+}
+.btn-search2{
+    background: #c8c8c8;
+    color: #444;
+    height: 48px;
+    border-radius: 0 20px 20px 0;
+    width: 100px;
+    font-size: 16px;
+    border: 0;
+}
+.logo-pull-right{
+	float: right;
+}
+.pull-right-option{
+	float:right;
+}

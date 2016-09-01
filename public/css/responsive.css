@@ -1,0 +1,169 @@
+.table-responsive {
+    overflow-x: auto;
+    min-height: .01%;
+    margin-top: 42px;
+    background: #EEEEEE;
+    padding: 33px 52px;
+}
+@media screen and (max-width: 325px){
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #e7ecf1;
+    }
+    .btn.btn-big {
+        margin: 5px 0px;
+    }
+    .btn-drop {
+        border-radius: 5px;
+        margin-top: 15px;
+        width: 150px;
+    }
+    .btn-group{
+        float: left;
+    }
+    .btn-search2{
+        margin: 50px 0px 0px 10px;
+        width: 90px;
+    }
+    .form-control.box-search1 {
+        float: left;
+        width: 180px;
+    }
+    .btn-search1 {
+        width: 70px;
+    }
+    .center-nav{
+        background-color: #444;
+    }
+    .center-nav h1 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    .user-nav{
+        background-color: #444;
+        line-height: 40px;
+    }
+    .navbar-inverse{
+        height: auto;
+    }
+    .sym-s{
+        padding-top: 0px;
+        float: left;
+        width: 100%;
+    }
+    .sca h2 {
+        line-height: 50px;     
+    }
+    .logo-pull-right{
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+    .logo-pull-right{
+        float: none;
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 767px){
+     .center-nav{
+        background-color: #444;
+    }
+    .center-nav h1 {
+        line-height: 40px;
+    }
+    .user-nav{
+        background-color: #444;
+    }
+    .user-nav {
+        line-height: 45px;
+    }
+    .navbar-inverse {
+        height: auto;
+    }
+    .sym-s{
+        padding-top: 0px;
+        float: left;
+        width: 100%;
+    }
+    .logo-pull-right{
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+    .logo-pull-right{
+        float: none;
+        margin-bottom: 10px;
+    }
+    .form-control.box-search1{
+        float: left;
+    }
+    .form-search-2{
+        padding-top: 15px;
+    }
+    .btn.btn-big {
+        margin: 5px 5px;
+    }
+    .table-responsive {
+        padding: 20px 20px;
+    }
+}
+@media only screen and (min-width: 325px) and (max-width: 480px) {
+    .form-control.box-search1 {
+        width: 200px;
+    }
+    .btn-drop {
+        border-radius: 5px;
+        margin-top: 15px;
+        width: 150px;
+        margin-right: 10px;
+    }
+    .btn-group {
+        float: left;
+    }
+    .btn-search2 {
+        margin: 50px 0px 0px 10px;
+        width: 90px;
+    }
+}
+@media all and (max-width: 1024px) {
+    .top-content {
+        height: auto;
+    }
+    .pull-right-option{
+        float: left !important;
+        padding: top 10px;
+        margin-top: 10px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 960px) {
+    .center-nav {
+        background-color: #444;
+    }
+    .user-nav {
+        background-color: #444;
+    }
+    .user-nav {
+        line-height: 40px;
+    }
+    .navbar-inverse {
+        height: auto;
+    }
+    .logo-pull-right{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+    }
+    .sym-s {
+        padding-top: 15px;
+        float: left;
+        height: auto;
+        width: 100%;
+    }
+    .form-search-2{
+        margin-top: 10px;
+    }
+}
