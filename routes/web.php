@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/','MerchantController@show', function () {
+    return view('merchant/index');
 });
 
 Route::get('foo', function () {

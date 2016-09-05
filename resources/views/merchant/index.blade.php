@@ -70,150 +70,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-green btn-ready">Ready</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-prodd">PROD-D</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-moss btn-update">Update</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-green btn-prodz">Prod-z</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-green btn-ready">Ready</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-green btn-ready">Ready</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-green btn-edit" data-toggle="modal" data-target=".bs-example-modal-lg">Edit</button></td>
-                </tr>
-                <tr>
-                    <th class="text-right" scope="row">ROSS</th>
-                    <td class="text-right">117</td>
-                    <td class="text-right">1</td>
-                    <td>rosssv@scanov.com</td>
-                    <td>US</td>
-                    <td></td>
-                    <td>Newyork</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">PR</td>
-                    <td class="text-right">Zone</td>
-                    <td class="text-right">Ross1-Y</td>
-                    <td class="text-right">Y</td>
-                    <td>PR-ZBOT-US-Ross1-Y</td>
-                    <td class="text-center"><button type="button" class="btn btn-small btn-yellow btn-draft">Draft</button></td>
-                </tr>
+                @foreach($data as $row)
+                    <tr>
+                        <th class="text-right" scope="row">{{$row->name}}</th>
+                        <td class="text-right">NULL</td>
+                        <td class="text-right">NULL</td>
+                        <td>{{$row->email}}</td>
+                        <td>{{$row->countries_code}}</td>
+                        <td></td>
+                        <td>{{$row->city}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right">{{$row->receipt_types_code != ''?$row->receipt_types_code:$row->invoice_types_code}}</td>
+                        <td class="text-right">{{$row->algorithm_types_code}}</td>
+                        <td class="text-right">Ross1-Y</td>
+                        <td class="text-right">Y</td>
+                        <td>PR-ZBOT-US-Ross1-Y</td>
+                        <td class="text-center"><button type="button" class="btn btn-small btn-green btn-ready">Ready</button></td>
+                    </tr>
+                @endforeach
+
+
                 </tbody>
             </table>
         </div>
