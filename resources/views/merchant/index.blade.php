@@ -6,8 +6,8 @@
                 <div class="col-lg-7 col-md-12">
                     <div class="pull-left form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control box-search1" placeholder="Enter some keywords">
-                            <button type="button" class="btn btn-search1">Search</button>
+                            <input type="text" name="search-keyword" class="form-control box-search1" placeholder="Enter some keywords">
+                            <button type="button" class="btn btn-search1" id="search-keyword">Search</button>
                         </div>
                         <div class="form-group form-search-2">
                             <div class="btn-group">

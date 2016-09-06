@@ -10,11 +10,18 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
 Route::get('/','MerchantController@show', function () {
-    return view('merchant/index');
+})->name('listmerchant');
+
+
+Route::group(['middleware' => ['XSS']], function () {
+    Route::get('/searchMerchant','MerchantController@search', function () {
+    });
+//    Route::post('searchMerchant', function (Request $rq) {
+//        $keyword = $rq->input('keyword');
+//        $products = App\Models\Merchant::searchMerchantByKeyword($keyword);
+//        return response()->json($products);
+//    });
 });
 
-Route::get('foo', function () {
-    return 'Hello World';
-});
+

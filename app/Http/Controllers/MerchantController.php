@@ -16,4 +16,14 @@ class MerchantController extends Controller
             'data' => $listMerchant
         ]);
     }
+    public function search(Request $rq)
+    {
+        $keyword = $rq->input('keyword');
+        $listMerchant = Merchant::searchMerchantByKeyword($keyword);
+        return view('merchant.index',[
+            'data' => $listMerchant
+        ]);
+//        return redirect()->route('listmerchant')->with('data',$listMerchant);
+    }
+    
 }

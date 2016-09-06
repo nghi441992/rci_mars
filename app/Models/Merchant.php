@@ -38,7 +38,30 @@ class Merchant extends Model
 //             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
              ->select('merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
                  ,'merchants.city','receipt_types.code as receipt_types_code','invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code')
+             ->limit(20)
              ->get();
          return $data;
      }
+    public static function searchMerchantByKeyword($keyword = null)
+    {
+        $query = DB::table('merchants')
+            ->join('users', 'users.id', '=', 'merchants.user_id')
+            ->leftjoin('invoice_zonal_algorithms', 'invoice_zonal_algorithms.merchant_id', '=', 'merchants.id')
+            ->leftjoin('receipt_zonal_algorithms', 'receipt_zonal_algorithms.merchant_id', '=', 'merchants.id')
+            ->leftjoin('receipt_types', 'receipt_types.id', '=', 'receipt_zonal_algorithms.receipt_type_id')
+            ->leftjoin('invoice_types', 'invoice_types.id', '=', 'invoice_zonal_algorithms.invoice_type_id')
+            ->join('countries', 'countries.id', '=', 'merchants.country_id')
+            ->leftjoin('algorithm_types', 'algorithm_types.id', '=', 'receipt_zonal_algorithms.algorithm_type_id')
+//             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
+            ->select('merchants.name', 'merchants.public', 'users.email', 'countries.code as countries_code '
+                , 'merchants.city', 'receipt_types.code as receipt_types_code', 'invoice_types.code as invoice_types_code', 'algorithm_types.code as algorithm_types_code');
+        if($keyword != null)
+        {
+            $query->where('invoice_zonal_algorithms.keywords','like','%'.$keyword.'%');
+            $query->orWhere('receipt_zonal_algorithms.keywords','like','%'.$keyword.'%');
+        }
+        $query->limit(20);
+        $data = $query->get();
+        return $data;
+    }
 }
