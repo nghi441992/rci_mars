@@ -6,24 +6,25 @@
 $(document).on('click','#search-keyword',function(){
     var url = fly.baseUrl + "/searchMerchant";
     var keyword = $('input[name=search-keyword]').val();
-    url = url + '/?keyword='+keyword;
-    console.log(url);
-    // window.location = url;
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //     }
-    // })
-    // $.ajax({
-    //     type: "GET",
-    //     url:  url,
-    //     data: {'keyword': keyword},
-    //     success: function (data) {
-    //     },
-    //     error: function (data) {
-    //         console.log('Error:', data);
-    //     }
-    // });
+    $('.modal-search').css('display','block');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+    $.ajax({
+        type: "POST",
+        url:  url,
+        data: {'keyword': keyword},
+        success: function (data) {
+            $('.modal-search').css('display','none');
+            $('.main-content').html(data);
+        },
+        error: function (data) {
+            $('.modal-search').css('display','none');
+            console.log('Error:', data);
+        }
+    });
 });
 //display modal form for creating new product
 $('#btn_add').click(function(){

@@ -111,9 +111,12 @@ body, table, div, form, ul, li, tr, td, a, span, h1, h2, h3, h4, h5 {
 .btn-search1:hover{
 	background:#fbb034
 }
+.btn-search2:hover{
+	background:#fbb034
+}
 .btn-drop{
 	background:#262626;
-	width:180px;
+	width:190px;
 	height:48px;
 	border-radius:20px 0 0 20px;
 	color:#fff;
@@ -134,7 +137,8 @@ body, table, div, form, ul, li, tr, td, a, span, h1, h2, h3, h4, h5 {
 .btn.btn-big {
 	height:48px;
 	border-radius:20px;
-	padding:6px 15px
+	padding:6px 15px;
+    outline: none;
 }
 .btn-yellow {
 	background:#ffff00;
@@ -229,7 +233,7 @@ body, table, div, form, ul, li, tr, td, a, span, h1, h2, h3, h4, h5 {
 	background:#ebebeb
 }
 .modal-lg {
-    width: 1170px;
+    max-width: 1170px;
 }
 .modal-content{
 	border-radius:0;
@@ -363,4 +367,144 @@ body, table, div, form, ul, li, tr, td, a, span, h1, h2, h3, h4, h5 {
 }
 .pull-right-option{
 	float:right;
+}
+.label-login{
+	font-size: 17px;
+    font-family: "open Sans", arial;
+    font-weight: 500;
+}
+.input-error{
+	padding-top: 10px;
+	color: #f00;
+}
+.alphabet-select > li{
+  	float: left;
+     width: 45px;
+     text-align: center;
+  }
+  .dropdown-menu.alphabet-select{
+  	min-width: 272px;
+  }
+  .dropdown-menu.alphabet-select > li > a:hover{
+     background-color: #ef3838;
+  }
+  .dropdown-menu.alphabet-select > li > a {
+     padding: 3px 0px;
+     border-radius: 3px;
+  }
+  .alphabet-select{
+  	padding: 0px;
+  }
+  .box-alphabet{
+    color: #fff;
+    background: #262626;
+    border: 0px;
+    background-image: url('../images/bg-select.png');
+    background-repeat: no-repeat;
+    background-position: 127px;
+    width: 140px;
+    -webkit-appearance: none;
+    outline: none;
+    text-align: left;
+  }
+#select-apla{
+    background: #262626;
+    width: auto;
+    height: 48px;
+    border-radius: 20px 0 0 20px;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-right: 1px #000 solid;
+    padding: 0px 10px 0px 10px;
+    outline: none;
+    font-size: 14px;
+    text-align: left;
+    background-image: url('../images/bg-select.png');
+    background-repeat: no-repeat;
+    background-position: 130px;
+    width: 150px;
+    padding: 14px;
+    -webkit-appearance: none;
+    outline: none;
+}
+#select-apla option{
+    color: #262626;
+    float: left;
+    min-width: 160px;
+    padding: 20px 5px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 10px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+#select-status{
+	background: #262626;
+    height: 48px;
+  	border-radius: 0px 0 0 0px;
+    color: #fff;
+    font-size: 14px;
+    height: 48px;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-right: 1px #000 solid;
+    padding: 0px 10px 0px 10px;
+    outline: none;
+    font-size: 14px;
+    text-align: left;
+    background-image: url('../images/bg-select.png');
+    background-repeat: no-repeat;
+    background-position: 130px;
+    width: 150px;
+    padding: 14px;
+    -webkit-appearance: none;
+    outline: none;
+}
+#select-status option{
+    color: #262626;
+    float: left;
+    min-width: 160px;
+    padding: 20px 5px;
+    margin: 10px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}	
+.btn{
+	outline: none !important;
+}
+/* popup search */
+.modal-search{
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+.text-red{
+	color: #f00;
+	text-align: center;
 }

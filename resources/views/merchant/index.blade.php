@@ -11,28 +11,52 @@
                         </div>
                         <div class="form-group form-search-2">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-drop dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    All Alphabetical <span class="caret"></span>
+                                <button type="button" class="btn btn-drop dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><input type="button"
+                                                                                          class="box-alphabet"
+                                                                                          name="alpha-select"
+                                                                                          value="All Alphabetical">
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
+                                <ul class="dropdown-menu alphabet-select">
+                                    <li><a href="#" class="alphabet-option" data-value="All Alphabetical">Reset</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="A">A</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="B">B</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="C">C</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="D">D</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="E">E</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="F">F</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="G">G</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="H">H</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="I">I</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="J">J</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="K">K</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="L">L</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="M">M</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="N">N</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="O">O</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="P">P</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="Q">Q</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="R">R</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="S">S</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="T">T</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="U">U</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="V">V</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="W">W</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="X">X</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="Y">Y</a></li>
+                                    <li><a href="#" class="alphabet-option" data-value="Z">Z</a></li>
                                 </ul>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-drop btn-drop2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    All Alphabetical <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
+                                <select id="select-status">
+                                    <option value="" selected>All Status</option>
+                                    <option value="darft">DRAFT</option>
+                                    <option value="ready">READY</option>
+                                    <option value="prod-d">PROD-D</option>
+                                    <option value="prod-z">PROD-Z</option>
+                                    <option value="edit">EDIT</option>
+                                    <option value="update">UPDATE</option>
+                                </select>
                             </div>
                             <button type="button" class="btn btn-search122 btn-search2">Search</button>
                         </div>
@@ -40,16 +64,17 @@
                 </div>
                 <div class="col-lg-5 col-md-12">
                     <div class="pull-right-option">
-                        <button type="button" class="btn btn-big btn-yellow">+  Add New Merchant</button>
+                        <button type="button" class="btn btn-big btn-yellow">+ Add New Merchant</button>
                         <button type="button" class="btn btn-big btn-green">Export Ready Merchants</button>
                         <button type="button" class="btn btn-big btn-moss">Export Updated Merchants</button>
                     </div>
                 </div>
             </div>
         </div><!--top-content-->
+        <!--Have Data-->
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
-                <thead >
+                <thead>
                 <tr class="info">
                     <th class="text-right">Merchant name</th>
                     <th class="text-center">Scanov <br>Merchant ID</th>
@@ -59,12 +84,12 @@
                     <th class="text-center">POS <br>Country</th>
                     <th>City</th>
                     <th>Postal code</th>
-                    <th class="text-center">ISIC <br />Category</th>
-                    <th class="text-center">Captova <br />Category</th>
-                    <th class="text-center">Document <br />Type</th>
+                    <th class="text-center">ISIC <br/>Category</th>
+                    <th class="text-center">Captova <br/>Category</th>
+                    <th class="text-center">Document <br/>Type</th>
                     <th>Algo Type</th>
-                    <th class="text-center">Algo <br />Key Name</th>
-                    <th	class="text-center">Line <br />Items</th>
+                    <th class="text-center">Algo <br/>Key Name</th>
+                    <th class="text-center">Line <br/>Items</th>
                     <th class="text-center">Inferred Algo Name</th>
                     <th class="text-center">Status</th>
                 </tr>
@@ -87,11 +112,11 @@
                         <td class="text-right">Ross1-Y</td>
                         <td class="text-right">Y</td>
                         <td>PR-ZBOT-US-Ross1-Y</td>
-                        <td class="text-center"><button type="button" class="btn btn-small btn-green btn-ready">Ready</button></td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-small btn-green btn-ready">Ready</button>
+                        </td>
                     </tr>
                 @endforeach
-
-
                 </tbody>
             </table>
         </div>
@@ -115,186 +140,11 @@
             </ul>
         </div>
     </div>
-    <div class="container-fluid footer">
-        <ul class="pull-right">
-            <li><a href="#"><<</a></li>
-            <li><a href="#">Pre</a></li>
-            <li><a href="#">Next</a></li>
-            <li><a href="#">>></a></li>
-        </ul>
-    </div>
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title text-center text-uppercase" id="myModalLabel">Edit Merchant - Algo</h2>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 box-left">
-                            <h3>Merchant</h3>
-                            <div class="form-group">
-                                <label >Merchant Name</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label >Scanop Merchant ID</label>
-                                <input type="text" class="form-control form-grey" >
-                            </div>
-                            <div class="form-group">
-                                <label >Scanop User ID</label>
-                                <input type="text" class="form-control form-grey">
-                            </div>
-                            <div class="form-group">
-                                <label >Mars User ID</label>
-                                <input type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label >HD Country</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Pos Country</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >City</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Post Code</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label >ISIC Category</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Captova Category</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 box-right">
-                            <h3>Algo</h3>
-                            <div class="form-group">
-                                <label >Document Type</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Algo Type</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Algo Key Name</label>
-                                <div class="bs-select">
-                                    <select class="form-control">
-                                        <option>Tất cả danh mục</option>
-                                        <option>Thời trang</option>
-                                        <option>Điện tử</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Line Item</label>
-                                <div class="form-inline">
-                                    <div class="radio">
-                                        <label>
-                                            <input id="optionsRadios1" type="radio" value="option1" name="optionsRadios" >
-                                            Yes
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input id="optionsRadios2" type="radio" value="option2" name="optionsRadios">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label >Inferred Algo Name</label>
-                                <input type="text" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label >Keywords</label>
-                                <ul class="keyword">
-                                    <li><a href="#">abadjf</a><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
-                                    <li><a href="#">Friday today</a><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
-                                    <li><a href="#">abadjf</a><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
-                                    <li><a href="#">Friday today</a><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></li>
-                                </ul>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Input your name">
-                            </div>
-                            <div class="list-btn pull-right">
-                                <ul>
-                                    <li><button type="button" class="btn btn-small btn-draft-pop btn-popup">Draft</button></li>
-                                    <li><button type="button" class="btn btn-small btn-ready-pop btn-popup">Ready</button></li>
-                                    <li><button type="button" class="btn btn-small btn-prodd-pop btn-popup">Prod-d</button></li>
-                                </ul>
-                                <ul>
-                                    <li><button type="button" class="btn btn-small btn-edit-pop btn-popup">Edit</button></li>
-                                    <li><button type="button" class="btn btn-small btn-update-pop btn-popup">Update</button></li>
-                                    <li><button type="button" class="btn btn-small btn-prodz-pop btn-popup">Prod-z</button></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-big pull-left btn-delete">Delete Merchant</button>
-                    <button type="button" class="btn btn-big pull-right btn-cancel" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-big pull-right btn-save">Save & Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
+
+
+
+
 
 
 

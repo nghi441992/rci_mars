@@ -10,18 +10,21 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use \Illuminate\Http\Request;
 Route::get('/','MerchantController@show', function () {
 })->name('listmerchant');
 
 
 Route::group(['middleware' => ['XSS']], function () {
-    Route::get('/searchMerchant','MerchantController@search', function () {
-    });
-//    Route::post('searchMerchant', function (Request $rq) {
-//        $keyword = $rq->input('keyword');
-//        $products = App\Models\Merchant::searchMerchantByKeyword($keyword);
-//        return response()->json($products);
+//    Route::get('/searchMerchant','MerchantController@search', function () {
 //    });
+    Route::post('searchMerchant', function (Request $rq) {
+        $keyword = $rq->input('keyword');
+        $products = App\Models\Merchant::searchMerchantByKeyword($keyword);
+        return view('ajax.listmerchant',[
+            'data'=>$products,
+        ]);
+    });
 });
 
 

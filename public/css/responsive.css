@@ -66,6 +66,29 @@
         float: none;
         margin-bottom: 10px;
     }
+    .footer ul li {
+        display: inline;
+        padding: 0 15px;
+        line-height: 40px;
+    }
+    .pagination > li > a, .pagination > li > span {
+        padding: 6px 10px;    
+    }
+}
+@media screen and (max-width: 320px){
+    .btn-search2{
+        margin: 50px 0px 0px 5px;
+        width: 70px;
+    }
+    .form-control.box-search1 {
+        float: left;
+        width: 155px;
+    }
+    .footer ul li {
+        display: inline;
+        padding: 0 15px;
+        line-height: 40px;
+    }
 }
 @media screen and (max-width: 767px){
      .center-nav{
@@ -109,16 +132,23 @@
     .table-responsive {
         padding: 20px 20px;
     }
+    .box-right {
+        padding-left: 15px;
+    }
+    .btn.btn-big.btn-delete {
+        float: right !important;
+    }
 }
 @media only screen and (min-width: 325px) and (max-width: 480px) {
     .form-control.box-search1 {
-        width: 200px;
+        width: 180px;
     }
     .btn-drop {
         border-radius: 5px;
         margin-top: 15px;
         width: 150px;
         margin-right: 10px;
+        margin-bottom: 10px;
     }
     .btn-group {
         float: left;
@@ -126,6 +156,18 @@
     .btn-search2 {
         margin: 50px 0px 0px 10px;
         width: 90px;
+    }
+    .box-alphabet {
+        color: #fff;
+        background: #262626;
+        border: 0px;
+        background-image: url('../images/bg-select.png');
+        background-repeat: no-repeat;
+        background-position: 118px;
+        width: 130px;
+        -webkit-appearance: none;
+        outline: none;
+        text-align: left;
     }
 }
 @media all and (max-width: 1024px) {
@@ -136,6 +178,25 @@
         float: left !important;
         padding: top 10px;
         margin-top: 10px;
+    }
+    .box-left {
+        border-right: #ccc 0px solid; 
+    }
+    /* .modal-lg {
+        width: 1170px;
+    } */
+}
+@media (min-width: 992px){
+    .modal-lg {
+        width: 900px;
+    }
+    .box-right {
+        padding-left: 15px;
+    }
+}
+@media (min-width: 1280px){
+    .modal-lg {
+        width: 1170px;
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 960px) {
