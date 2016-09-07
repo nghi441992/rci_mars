@@ -34,7 +34,7 @@
 <nav class="navbar">
     <div class="container-fluid navbar-inverse">
         <div class="row">
-            <div class="navbar-header col-md-2"><a class="navbar-brand " href="#"><img alt="..."
+            <div class="navbar-header col-md-2"><a class="navbar-brand " href="{{App::make('url')->to('/')}}"><img alt="..."
                                                                                        src="{{ URL::asset('images/logo_mars.jpg') }}"/></a>
             </div>
             <div class="center-nav col-md-8 col-xs-12"><h1>Merchant-Algo Repository System</h1></div>
@@ -326,6 +326,7 @@
 <script src="{{ URL::asset('js/bootstrap.js') }}"></script>
 <script src="{{ URL::asset('js/script.js') }}"></script>
 <script src="{{ URL::asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+<script src="{{ URL::asset('js/utils.js') }}"></script>
 <script>
     var fly = {
         baseUrl: "{{App::make('url')->to('/')}}"

@@ -20,7 +20,9 @@ Route::group(['middleware' => ['XSS']], function () {
 //    });
     Route::post('searchMerchant', function (Request $rq) {
         $keyword = $rq->input('keyword');
-        $products = App\Models\Merchant::searchMerchantByKeyword($keyword);
+        $alphabet = $rq->input('alphabet');
+        $status = $rq->input('status');
+        $products = App\Models\Merchant::searchMerchantByKeyword($keyword,$alphabet,$status);
         return view('ajax.listmerchant',[
             'data'=>$products,
         ]);

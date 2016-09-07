@@ -26,28 +26,31 @@ $(document).on('click','#search-keyword',function(){
         }
     });
 });
-//display modal form for creating new product
-$('#btn_add').click(function(){
-    $('#btn-save').val("add");
-    $('#frmProducts').trigger("reset");
-    $('#myModal').modal('show');
-});
+
 //delete product and remove it from list
-$(document).on('click','.delete-product',function(){
-    var product_id = $(this).val();
+$(document).on('click','#sort-status-alpha',function(){
+    var alphabet = $('#sort-alpha-select input[name=alpha-select]').val();
+    var status = utils.removeDiacritical($('#select-status').val());
+    if(!utils.alphabet(alphabet)) {
+        alphabet = null;
+    }
+    var url = fly.baseUrl + "/searchMerchant";
+    $('.modal-search').css('display','block');
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     })
     $.ajax({
-        type: "DELETE",
-        url: url + '/' + product_id,
+        type: "POST",
+        url: url,
+        data: {'alphabet':alphabet,'status':status},
         success: function (data) {
-            console.log(data);
-            $("#product" + product_id).remove();
+            $('.modal-search').css('display','none');
+            $('.main-content').html(data);
         },
         error: function (data) {
+            $('.modal-search').css('display','none');
             console.log('Error:', data);
         }
     });

@@ -3,16 +3,17 @@
         <div class="col-lg-7 col-md-12">
             <div class="pull-left form-inline">
                 <div class="form-group">
-                    <input type="text" name="search-keyword" class="form-control box-search1" placeholder="Enter some keywords">
+                    <input type="text" name="search-keyword" class="form-control box-search1"
+                           placeholder="Enter some keywords">
                     <button type="button" class="btn btn-search1" id="search-keyword">Search</button>
                 </div>
                 <div class="form-group form-search-2">
                     <div class="btn-group">
                         <button type="button" class="btn btn-drop dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><input type="button"
-                                                                                  class="box-alphabet"
-                                                                                  name="alpha-select"
-                                                                                  value="All Alphabetical">
+                                aria-haspopup="true" id="sort-alpha-select" aria-expanded="false"><input type="button"
+                                                                                                         class="box-alphabet"
+                                                                                                         name="alpha-select"
+                                                                                                         value="All Alphabetical">
                         </button>
                         <ul class="dropdown-menu alphabet-select">
                             <li><a href="#" class="alphabet-option" data-value="All Alphabetical">Reset</a></li>
@@ -46,7 +47,7 @@
                     </div>
                     <div class="btn-group">
                         <select id="select-status">
-                            <option value="" selected>All Status</option>
+                            <option value="0" selected>All Status</option>
                             <option value="darft">DRAFT</option>
                             <option value="ready">READY</option>
                             <option value="prod-d">PROD-D</option>
@@ -55,7 +56,7 @@
                             <option value="update">UPDATE</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-search122 btn-search2">Search</button>
+                    <button type="button" class="btn btn-search122 btn-search2" id="sort-status-alpha">Search</button>
                 </div>
             </div>
         </div>
@@ -110,7 +111,19 @@
                 <td class="text-right">Y</td>
                 <td>PR-ZBOT-US-Ross1-Y</td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-small btn-green btn-ready">Ready</button>
+                    @if ($row->status === 1)
+                        <button type="button" class="btn btn-small btn-yellow btn-draft">Draft</button>
+                    @elseif ($row->status == 2)
+                        <button type="button" class="btn btn-small btn-green btn-ready">Ready</button>
+                    @elseif ($row->status == 3)
+                        <button type="button" class="btn btn-small btn-prodd">PROD-D</button>
+                    @elseif ($row->status == 4)
+                        <button type="button" class="btn btn-small btn-green btn-prodz">Prod-z</button>
+                    @elseif ($row->status == 5)
+                        <button type="button" class="btn btn-small btn-green btn-edit">Edit</button>
+                    @elseif ($row->status == 6)
+                        <button type="button" class="btn btn-small btn-moss btn-update">Update</button>
+                    @endif
                 </td>
             </tr>
         @endforeach
@@ -136,3 +149,17 @@
         </li>
     </ul>
 </div>
+<script>
+    jQuery( document ).ready(function($){
+        $('.caret').click(function() {
+            $('.user-logout').toggle();
+        });
+        $('.alphabet-option').click(function(event) {
+            event.preventDefault();
+            var ok = $(this).data('value');
+            $('.box-alphabet').val($(this).data('value'));
+            //return false;
+        });
+    });
+
+</script>
