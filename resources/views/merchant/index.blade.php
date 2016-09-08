@@ -62,33 +62,49 @@
         </tbody>
     </table>
 </div>
-<div class="page pull-right">
-    <ul class="pagination">
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
+@if ($data->lastPage() > 1)
+    <div class="page pull-right">
+        <ul class="pagination">
+            @if($data->currentPage() == 1)
+                <li class="disabled">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{$data->url($data->currentPage() - 1)}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            @endif
+            @if($data->lastPage() - $data->currentPage() < 5)
+                <?php $start = $data->lastPage() - 5 ?>
+            @else
+                <?php $start = $data->currentPage() ?>
+            @endif
+            @for($i = $start;$i<=$start+5;$i++)
+                <li class="{{$i==$data->currentPage()?'active':''}}"><a href="{{$data->url($i)}}">{{$i}}</a></li>
+            @endfor
+            @if($data->currentPage()+5 < $data->lastPage())
+                <li><a href="javascript:void(0)">.......</a></li>
+            @endif
+            @if($data->lastPage() > $data->currentPage())
+                <li>
+                    <a href="{{$data->url($data->currentPage()+1)}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            @else
+                <li class="disabled">
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            @endif
+        </ul>
     </div>
-<div class="container-fluid footer">
-    <ul class="pull-right">
-        <li><a href="#"><<</a></li>
-        <li><a href="#">Pre</a></li>
-        <li><a href="#">Next</a></li>
-        <li><a href="#">>></a></li>
-    </ul>
-</div>
+    @endif
 </div>
 </div>
 

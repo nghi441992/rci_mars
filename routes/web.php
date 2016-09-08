@@ -27,6 +27,7 @@ Route::group(['middleware' => ['XSS']], function () {
             'data'=>$products,
         ]);
     });
+    Route::get('laravel-ajax-pagination',array('as'=>'ajax-pagination','uses'=>'FileController@productList'));
 });
 
 

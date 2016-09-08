@@ -46,8 +46,8 @@ class Merchant extends Model
              ->select('merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
                  ,'merchants.city','receipt_types.code as receipt_types_code'
                  ,'invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code','merchants.status')
-             ->limit(20)
-             ->get();
+             ->paginate(20);
+//             ->get();
          return $data;
      }
     public static function searchMerchantByKeyword($keyword = null,$alphabet = null,$status = null)
@@ -97,7 +97,7 @@ class Merchant extends Model
         {
             $query->where('merchants.status','=',6);
         }
-        $query->limit(20);
+        $query->paginate(20);
         $data = $query->get();
         return $data;
     }
