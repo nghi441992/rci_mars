@@ -1,75 +1,5 @@
-<div class="top-content">
-    <div class="row">
-        <div class="col-lg-7 col-md-12">
-            <div class="pull-left form-inline">
-                <div class="form-group">
-                    <input type="text" name="search-keyword" class="form-control box-search1"
-                           placeholder="Enter some keywords">
-                    <button type="button" class="btn btn-search1" id="search-keyword">Search</button>
-                </div>
-                <div class="form-group form-search-2">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-drop dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" id="sort-alpha-select" aria-expanded="false"><input type="button"
-                                                                                                         class="box-alphabet"
-                                                                                                         name="alpha-select"
-                                                                                                         value="All Alphabetical">
-                        </button>
-                        <ul class="dropdown-menu alphabet-select">
-                            <li><a href="#" class="alphabet-option" data-value="All Alphabetical">Reset</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="A">A</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="B">B</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="C">C</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="D">D</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="E">E</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="F">F</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="G">G</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="H">H</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="I">I</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="J">J</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="K">K</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="L">L</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="M">M</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="N">N</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="O">O</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="P">P</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="Q">Q</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="R">R</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="S">S</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="T">T</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="U">U</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="V">V</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="W">W</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="X">X</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="Y">Y</a></li>
-                            <li><a href="#" class="alphabet-option" data-value="Z">Z</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <select id="select-status">
-                            <option value="0" selected>All Status</option>
-                            <option value="darft">DRAFT</option>
-                            <option value="ready">READY</option>
-                            <option value="prod-d">PROD-D</option>
-                            <option value="prod-z">PROD-Z</option>
-                            <option value="edit">EDIT</option>
-                            <option value="update">UPDATE</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-search122 btn-search2" id="sort-status-alpha">Search</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-12">
-            <div class="pull-right-option">
-                <button type="button" class="btn btn-big btn-yellow">+ Add New Merchant</button>
-                <button type="button" class="btn btn-big btn-green">Export Ready Merchants</button>
-                <button type="button" class="btn btn-big btn-moss">Export Updated Merchants</button>
-            </div>
-        </div>
-    </div>
-</div><!--top-content-->
-<!--Have Data-->
+@if (count($data) > 0)
+        <!--Have Data-->
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
         <thead>
@@ -149,17 +79,22 @@
         </li>
     </ul>
 </div>
-<script>
-    jQuery( document ).ready(function($){
-        $('.caret').click(function() {
-            $('.user-logout').toggle();
-        });
-        $('.alphabet-option').click(function(event) {
-            event.preventDefault();
-            var ok = $(this).data('value');
-            $('.box-alphabet').val($(this).data('value'));
-            //return false;
-        });
-    });
+<div class="container-fluid footer">
+    <ul class="pull-right">
+        <li><a href="#"><<</a></li>
+        <li><a href="#">Pre</a></li>
+        <li><a href="#">Next</a></li>
+        <li><a href="#">>></a></li>
+    </ul>
+</div>
+</div>
+</div>
 
-</script>
+@else
+        <!-- end have data -->
+<!-- No data-->
+<div class="table-responsive">
+    <p class="text-red">No result. Please try again or refesh brower</p>
+</div>
+<!-- end no data -->
+@endif
