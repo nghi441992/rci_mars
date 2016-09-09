@@ -62,4 +62,5 @@ function seachKeywordFilter(flag) {
             console.log('Error:', data);
         }
     });
-}
+};
+
