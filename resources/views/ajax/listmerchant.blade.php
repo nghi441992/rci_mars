@@ -60,41 +60,74 @@
         </tbody>
     </table>
 </div>
-<div class="page pull-right">
-    <ul class="pagination">
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div class="container-fluid footer">
-    <ul class="pull-right">
-        <li><a href="#"><<</a></li>
-        <li><a href="#">Pre</a></li>
-        <li><a href="#">Next</a></li>
-        <li><a href="#">>></a></li>
-    </ul>
-</div>
-</div>
-</div>
+@if ($data->lastPage() > 1)
+    <div class="page pull-right">
+        <ul class="pagination">
+            @if($data->currentPage() == 1)
+                <li class="disabled">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{$data->url($data->currentPage() - 1)}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            @endif
+            <li>
+                <a href="{{$data->url($data->firstItem())}}" aria-label="Next">
+                    <span aria-hidden="true">Fist</span>
+                </a>
+            </li>
+            @if($data->lastPage() - $data->currentPage() < 5)
+                <?php
+                $start = $data->lastPage() - 5 > 0 ? $data->lastPage() - 5 : 1;
+                $step = $data->lastPage() > 5 ? $start + 5 : $data->lastPage();
+                ?>
+            @else
+                <?php
+                $start = $data->currentPage();
+                $step = $start + 5;
+                ?>
+            @endif
+            @for($i = $start;$i<=$step;$i++)
+                <li class="{{$i==$data->currentPage()?'active':''}}"><a href="{{$data->url($i)}}">{{$i}}</a></li>
+            @endfor
+            @if($data->currentPage()+5 < $data->lastPage())
+                <li><a href="javascript:void(0)">.......</a></li>
+            @endif
+            <li>
+                <a href="{{$data->url($data->lastPage())}}" aria-label="Next">
+                    <span aria-hidden="true">Last</span>
+                </a>
+            </li>
+            @if($data->lastPage() > $data->currentPage())
+                <li>
+                    <a href="{{$data->url($data->currentPage()+1)}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            @else
+                <li class="disabled">
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            @endif
+        </ul>
+    </div>
+    @endif
+    </div>
+    </div>
 
-@else
-        <!-- end have data -->
-<!-- No data-->
-<div class="table-responsive">
-    <p class="text-red">No result. Please try again or refesh brower</p>
-</div>
-<!-- end no data -->
+    @else
+            <!-- end have data -->
+    <!-- No data-->
+    <div class="table-responsive">
+        <p class="text-red">No result. Please try again or refesh brower</p>
+    </div>
+    <!-- end no data -->
 @endif
+<div class="show-modal"></div>

@@ -68,6 +68,7 @@ class Merchant extends Model
         {
             $query->where('invoice_zonal_algorithms.keywords','like','%'.$keyword.'%');
             $query->orWhere('receipt_zonal_algorithms.keywords','like','%'.$keyword.'%');
+            $query->orWhere('merchants.name','like','%'.$keyword.'%');
         }
         if($alphabet != null)
         {
@@ -97,8 +98,8 @@ class Merchant extends Model
         {
             $query->where('merchants.status','=',6);
         }
-        $query->paginate(20);
-        $data = $query->get();
-        return $data;
+//        $query->paginate(20);
+//        $data = $query->get();
+        return $query;
     }
 }

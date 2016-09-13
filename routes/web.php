@@ -18,18 +18,9 @@ Route::get('/','MerchantController@show', function () {
 Route::group(['middleware' => ['XSS']], function () {
 //    Route::get('/searchMerchant','MerchantController@search', function () {
 //    });
-    Route::post('searchMerchant', function (Request $rq) {
-        $keyword = $rq->input('keyword');
-        $alphabet = $rq->input('alphabet');
-        $status = $rq->input('status');
-        $products = App\Models\Merchant::searchMerchantByKeyword($keyword,$alphabet,$status);
-        return view('ajax.listmerchant',[
-            'data'=>$products,
-        ]);
-    });
-    Route::get('getListCountry','CountryController@getList',function(){
-        
-    })->name('listcountry');
+    Route::post('searchMerchant','MerchantController@search',function (Request $rq) {});
+    Route::get('searchMerchant','MerchantController@pagine',function(){});
+    Route::post('addNewMerChant','MerchantController@addNew')->name('addnewmerchant');
 });
 
 

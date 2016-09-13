@@ -7,6 +7,7 @@
         <thead>
         <tr class="info">
             <th class="text-right">Merchant name</th>
+            <th class="text-right">Common Vendors </th>
             <th class="text-center">Scanov <br>Merchant ID</th>
             <th class="text-center">SCANOV <br>User ID</th>
             <th class="text-center">MARS User ID</th>
@@ -28,6 +29,7 @@
         @foreach($data as $row)
             <tr>
                 <th class="text-right" scope="row">{{$row->name}}</th>
+                <td class="text-right">NULL</td>
                 <td class="text-right">NULL</td>
                 <td class="text-right">NULL</td>
                 <td>{{$row->email}}</td>
@@ -78,17 +80,33 @@
                     </a>
                 </li>
             @endif
+            <li>
+                <a href="{{$data->url($data->firstItem())}}" aria-label="Next">
+                    <span aria-hidden="true">Fist</span>
+                </a>
+            </li>
             @if($data->lastPage() - $data->currentPage() < 5)
-                <?php $start = $data->lastPage() - 5 ?>
+                <?php
+                $start = $data->lastPage() - 5 > 0 ? $data->lastPage() - 5 : 1;
+                $step = $data->lastPage() > 5 ? $start + 5 : $data->lastPage();
+                ?>
             @else
-                <?php $start = $data->currentPage() ?>
+                <?php
+                $start = $data->currentPage();
+                $step = $start + 5;
+                ?>
             @endif
-            @for($i = $start;$i<=$start+5;$i++)
+            @for($i = $start;$i<=$step;$i++)
                 <li class="{{$i==$data->currentPage()?'active':''}}"><a href="{{$data->url($i)}}">{{$i}}</a></li>
             @endfor
             @if($data->currentPage()+5 < $data->lastPage())
                 <li><a href="javascript:void(0)">.......</a></li>
             @endif
+            <li>
+                <a href="{{$data->url($data->lastPage())}}" aria-label="Next">
+                    <span aria-hidden="true">Last</span>
+                </a>
+            </li>
             @if($data->lastPage() > $data->currentPage())
                 <li>
                     <a href="{{$data->url($data->currentPage()+1)}}" aria-label="Next">

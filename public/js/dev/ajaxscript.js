@@ -37,11 +37,11 @@ function seachKeywordFilter(flag) {
             return false;
         }
     }
-    if(keyword == null && alphabet == null && status == null) {
-        showMessage('Please enter merchant name');
-        $('#modalSeachFilter').modal('show');
-        return false;
-    }
+    // if(keyword == null && alphabet == null && status == null) {
+    //     showMessage('Please enter merchant name');
+    //     $('#modalSeachFilter').modal('show');
+    //     return false;
+    // }
     $('.modal-search').css('display','block');
     $.ajaxSetup({
         headers: {
@@ -53,7 +53,6 @@ function seachKeywordFilter(flag) {
         url: url,
         data: {'keyword':keyword,'alphabet':alphabet,'status':status},
         success: function (data) {
-            console.log(1);
             $('.modal-search').css('display','none');
             $('#table-data-list').html(data);
         },

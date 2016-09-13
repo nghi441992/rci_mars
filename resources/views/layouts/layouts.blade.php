@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-lg-5 col-md-12">
                     <div class="pull-right-option">
-                        <button type="button" class="btn btn-big btn-yellow" onclick="merchant.addNew()">+ Add New Merchant</button>
+                        <button type="button" class="btn btn-big btn-yellow" onclick="merchant.preAddNew()">+ Add New Merchant</button>
                         <button type="button" class="btn btn-big btn-green">Export Ready Merchants</button>
                         <button type="button" class="btn btn-big btn-moss">Export Updated Merchants</button>
                     </div>
