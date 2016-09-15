@@ -1,37 +1,90 @@
 var merchant = {};
 
+merchant.binData = function () {
+    var listCountry = merchant.getListCountry();
+    var listDocumentType = merchant.getListDocumentType();
+    var listAlgoType = merchant.getListAlgoType();
+};
 merchant.getListCountry = function () {
+    var listCountry = null;
     var url = fly.baseUrl + "/getListCountry";
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
-    })
+    });
     $.ajax({
         type: "GET",
         url: url,
         success: function (data) {
-            merchant.listCountry = data;
-            return data;
+            // merchant.returnData(data);
+            listCountry = $.parseJSON(data);
+            $.each(listCountry,function (i,item) {
+                $("select[name='Merchant[hqCountry]']").append('<option value='+item.id+'>'+item.name+'</option>');
+            });
         },
         error: function (data) {
-            $('.modal-search').css('display','none');
-            console.log('Error:', data);
+            console.log(data);
         }
     });
-}
+};
+
+merchant.getListDocumentType = function () {
+    var listDocumentType = null;
+    var url = fly.baseUrl + "/getListDocumentType";
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+            // merchant.returnData(data);
+            listDocumentType = $.parseJSON(data);
+            $.each(listDocumentType,function (i,item) {
+                $("select[name='Merchant[documentType]']").append('<option value='+item.id+'>'+item.name+'</option>');
+            });
+        },
+        error: function (data) {
+           console.log(data);
+        }
+    });
+};
+
+merchant.getListAlgoType = function () {
+    var listAlgoType= null;
+    var url = fly.baseUrl + "/getListAlgoType";
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+            // merchant.returnData(data);
+            listAlgoType = $.parseJSON(data);
+            $.each(listAlgoType,function (i,item) {
+                $("select[name='Merchant[alogoType]']").append('<option value='+item.id+'>'+item.name+'</option>');
+            });
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+};
+
 
 merchant.preAddNew = function () {
-      // var sdfsdf = merchant.getListCountry();
-    var data = [
-        'US','UK','KN'
-    ];
-    data = JSON.stringify(data);
-    $(".show-modal").load('template/formmerchant.blade.php',{'data':data},function () {
+    $(".show-modal").load('template/formmerchant.blade.php',function () {
         var content = $('#modal-add-merchant').parent().html();
         var modal = $(content);
         modal.modal('show');
     });
+    merchant.binData();
 };
 merchant.addNew = function () {
     var data = {};

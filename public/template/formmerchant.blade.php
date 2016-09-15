@@ -29,10 +29,8 @@
                         <div class="form-group">
                             <label>HQ Country</label>
                             <div class="bs-select">
-                                <select name="Merchant[hqCountry]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option value="1">Thời trang</option>
-                                    <option value="2"> Điện tử</option>
+                                <select name="Merchant[hqCountry]" id="hqCountry" class="form-control">
+                                    <option>Select country</option>
                                 </select>
                             </div>
                         </div>
@@ -40,33 +38,23 @@
                             <label>Pos Country</label>
                             <div class="bs-select">
                                 <select name="Merchant[posCountry]" class="form-control">
-                                    <option value="1">Tất cả danh mục</option>
-                                    <option value="=2">Thời trang</option>
-                                    <option value="3">Điện tử</option>
+                                    <option value="1">Select POS Country</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>City</label>
-                            <div class="bs-select">
-                                <select name="Merchant[city]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option value="1">Thời trang</option>
-                                    <option value="2"> Điện tử</option>
-                                </select>
-                            </div>
+                            <input name="Merchant[city" type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Post Code</label>
-                            <input name="Merchant[postcode]" type="text" class="form-control">
+                            <label>Postal Code</label>
+                            <input name="Merchant[postalcode]" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>ISIC Category</label>
                             <div class="bs-select">
                                 <select name="Merchant[isicCategory]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option>Thời trang</option>
-                                    <option>Điện tử</option>
+                                    <option>Select ISIC category</option>
                                 </select>
                             </div>
                         </div>
@@ -74,9 +62,7 @@
                             <label>Captova Category</label>
                             <div class="bs-select">
                                 <select name="Merchant[captovaCategory]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option>Thời trang</option>
-                                    <option>Điện tử</option>
+                                    <option>Select Captova category</option>
                                 </select>
                             </div>
                         </div>
@@ -87,9 +73,7 @@
                             <label>Document Type</label>
                             <div class="bs-select">
                                 <select name="Merchant[documentType]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option value="1">Thời trang</option>
-                                    <option value="2">Điện tử</option>
+                                    <option>Select Doccument type</option>
                                 </select>
                             </div>
                         </div>
@@ -97,9 +81,7 @@
                             <label>Algo Type</label>
                             <div class="bs-select">
                                 <select name="Merchant[alogoType]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option>Thời trang</option>
-                                    <option>Điện tử</option>
+                                    <option>Select Algo type</option>
                                 </select>
                             </div>
                         </div>
@@ -107,9 +89,7 @@
                             <label>Algo Key Name</label>
                             <div class="bs-select">
                                 <select name="Merchant[algoKeyName]" class="form-control">
-                                    <option>Tất cả danh mục</option>
-                                    <option>Thời trang</option>
-                                    <option>Điện tử</option>
+                                    <option>Select Algo Name</option>
                                 </select>
                             </div>
                         </div>
@@ -157,7 +137,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Input your name">
+                                   placeholder="Enter more keyword">
                         </div>
                         <div class="list-btn pull-right">
                             <ul>

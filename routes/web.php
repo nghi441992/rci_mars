@@ -21,6 +21,9 @@ Route::group(['middleware' => ['XSS']], function () {
     Route::post('searchMerchant','MerchantController@search',function (Request $rq) {});
     Route::get('searchMerchant','MerchantController@pagine',function(){});
     Route::post('addNewMerChant','MerchantController@addNew')->name('addnewmerchant');
+    Route::get('getListCountry','CountryController@getList')->name('getListCountry');
+    Route::get('getListDocumentType','DocumentController@getList')->name('getListDocumentType');
+    Route::get('getListAlgoType','AlgoController@getList')->name('getListAlgoType');
 });
 
 
