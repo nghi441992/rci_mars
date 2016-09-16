@@ -50,7 +50,7 @@
                 <td>{{$row->inferred_algo_name}}</td>
                 <td class="text-center">
                     @if ($row->status === 1)
-                        <button type="button" class="btn btn-small btn-yellow btn-draft">Draft</button>
+                        <button type="button" onclick="" class="btn btn-small btn-yellow btn-draft">Draft</button>
                     @elseif ($row->status == 2)
                         <button type="button" class="btn btn-small btn-green btn-ready">Ready</button>
                     @elseif ($row->status == 3)

@@ -123,6 +123,41 @@ merchant.addNew = function () {
         }
     });
 };
+
+merchant.edit = function (merchanId) {
+    var data = {};
+    // $('[name^="Merchant"]').each(function() {
+    //     if($(this).attr('name') == 'Merchant[optionsRadios]')
+    //         data[$(this).attr('name')] = $("input[name='Merchant[optionsRadios]']:checked").val();
+    //     else
+    //         data[$(this).attr('name')] = $(this).val();
+    // });
+    var url = fly.baseUrl + "/addNewMerChant";
+    var data1 = JSON.stringify(data);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    })
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {'data':data1},
+        success: function (data) {
+            if(data.status)
+            {
+                $('#modal-add-merchant').modal().hide();
+                merchant.showMessage('Insert merchant success!');
+                $('#modalSeachFilter').modal('show');
+            }
+        },
+        error: function (data) {
+            $('.modal-search').css('display','none');
+            console.log('Error:', data);
+        }
+    });
+}
+
 merchant.showMessage = function (str) {
     $('#modalSeachFilter .alert-danger').html(str);
 };
