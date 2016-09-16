@@ -5,6 +5,7 @@
         <thead>
         <tr class="info">
             <th class="text-right">Merchant name</th>
+            <th class="text-right">Common Vendors </th>
             <th class="text-center">Scanov <br>Merchant ID</th>
             <th class="text-center">SCANOV <br>User ID</th>
             <th class="text-center">MARS User ID</th>
@@ -28,18 +29,23 @@
                 <th class="text-right" scope="row">{{$row->name}}</th>
                 <td class="text-right">NULL</td>
                 <td class="text-right">NULL</td>
+                <td class="text-right">NULL</td>
                 <td>{{$row->email}}</td>
-                <td>{{$row->countries_code}}</td>
                 <td></td>
+                <td>{{$row->countries_code}}</td>
                 <td>{{$row->city}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td class="text-right">{{$row->receipt_types_code != ''?$row->receipt_types_code:$row->invoice_types_code}}</td>
                 <td class="text-right">{{$row->algorithm_types_code}}</td>
-                <td class="text-right">Ross1-Y</td>
-                <td class="text-right">Y</td>
-                <td>PR-ZBOT-US-Ross1-Y</td>
+                <td class="text-right">{{$row->algo_key_name}}</td>
+                @if($row->line_items == 1)
+                    <td class="text-right">Y</td>
+                @else
+                    <td class="text-right"></td>
+                @endif
+                <td>{{$row->inferred_algo_name}}</td>
                 <td class="text-center">
                     @if ($row->status === 1)
                         <button type="button" class="btn btn-small btn-yellow btn-draft">Draft</button>

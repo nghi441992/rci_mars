@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Merchant;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use Mockery\CountValidator\Exception;
+use App\Models\Country;
 
 class MerchantController extends Controller
 {
@@ -43,16 +46,35 @@ class MerchantController extends Controller
     public function addNew(Request $rq)
     {
         $data = json_decode($rq->input('data'),true);
-        $merchant = new Merchant();
-        $merchant->name = $data['Merchant[merchantName]'];
-        $merchant->country_id = 228;
-        $merchant->city = $data['Merchant[city]'];
-        $merchant->public = 1;
-        $merchant->user_id = 1;
-        $merchant->operation_country = 228;
-        $merchant->status = 1;
-        $merchant->save();
-        return response()->json(['status' => true]);
+        DB::beginTransaction();
+        try
+        {
+            $merchant = new Merchant();
+            $merchant->name = $data['Merchant[merchantName]'];
+            $merchant->country_id = Country::getCountryByCode($data['Merchant[posCountry]'])->id;
+            $merchant->city = $data['Merchant[city]'];
+            $merchant->public = 1;
+            $merchant->user_id = 1;
+            $merchant->operation_country = Country::getCountryByCode($data['Merchant[hqCountry]'])->id;
+            $merchant->status = 1;
+            $merchant->postal_code = '';
+            $merchant->captova_category = '';
+            $merchant->algo_key_name = $data['Merchant[algoKeyName]'];
+            if($data['Merchant[optionsRadios]'] == 1)
+                $merchant->line_items = $data['Merchant[optionsRadios]'];
+            else
+                $merchant->line_items = '';
+            $merchant->inferred_algo_name = $data['Merchant[inferredAlgoName]'];
+            $merchant->save();
+            DB::commit();
+            return response()->json(['status' => true]);
+            
+        }catch (Exception $ex)
+        {
+            DB::rollback();
+            throw new $ex;
+        }
+       
     }
 
     private function setData()

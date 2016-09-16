@@ -7,13 +7,11 @@ use App\Models\Country;
 
 use App\Http\Requests;
 
-class countryController extends Controller
+class CountryController extends Controller
 {
     public function getList()
     {
-        $listcountry = Country::all(array('id','name'))->toArray();
+        $listcountry = Country::all(array('id','name','code'))->toArray();
         return json_encode($listcountry) ;
     }
-
-    
 }

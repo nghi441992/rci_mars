@@ -27,7 +27,13 @@ class Merchant extends Model
         'public',
         'user_id',
         'operation_country',
-        'status'
+        'status',
+        'postal_code',
+        'isic_category',
+        'captova_category',
+        'algo_key_name',
+        'line_items',
+        'inferred_algo_name',
     ];
 
     protected $guarded = [];
@@ -45,7 +51,8 @@ class Merchant extends Model
 //             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
              ->select('merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
                  ,'merchants.city','receipt_types.code as receipt_types_code'
-                 ,'invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code','merchants.status')
+                 ,'invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code','merchants.status'
+                 ,'merchants.algo_key_name','merchants.line_items','merchants.inferred_algo_name','merchants.isic_category')
              ->paginate(20);
 //             ->get();
          return $data;
@@ -63,7 +70,8 @@ class Merchant extends Model
 //             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
             ->select('merchants.name', 'merchants.public', 'users.email', 'countries.code as countries_code '
                 , 'merchants.city', 'receipt_types.code as receipt_types_code', 'invoice_types.code as invoice_types_code'
-                , 'algorithm_types.code as algorithm_types_code','merchants.status');
+                , 'algorithm_types.code as algorithm_types_code','merchants.status','merchants.algo_key_name'
+                ,'merchants.line_items','merchants.inferred_algo_name','merchants.isic_category');
         if($keyword != null)
         {
             $query->where('invoice_zonal_algorithms.keywords','like','%'.$keyword.'%');

@@ -14,13 +14,14 @@ merchant.getListCountry = function () {
         }
     });
     $.ajax({
+        aync: false,
         type: "GET",
         url: url,
         success: function (data) {
-            // merchant.returnData(data);
             listCountry = $.parseJSON(data);
             $.each(listCountry,function (i,item) {
-                $("select[name='Merchant[hqCountry]']").append('<option value='+item.id+'>'+item.name+'</option>');
+                $("select[name='Merchant[hqCountry]']").append('<option idHqCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
+                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
             });
         },
         error: function (data) {
@@ -38,13 +39,14 @@ merchant.getListDocumentType = function () {
         }
     });
     $.ajax({
+        aync: false,
         type: "GET",
         url: url,
         success: function (data) {
             // merchant.returnData(data);
             listDocumentType = $.parseJSON(data);
             $.each(listDocumentType,function (i,item) {
-                $("select[name='Merchant[documentType]']").append('<option value='+item.id+'>'+item.name+'</option>');
+                $("select[name='Merchant[documentType]']").append('<option value='+item.code+'>'+item.code+'</option>');
             });
         },
         error: function (data) {
@@ -62,13 +64,14 @@ merchant.getListAlgoType = function () {
         }
     });
     $.ajax({
+        aync: false,
         type: "GET",
         url: url,
         success: function (data) {
             // merchant.returnData(data);
             listAlgoType = $.parseJSON(data);
             $.each(listAlgoType,function (i,item) {
-                $("select[name='Merchant[alogoType]']").append('<option value='+item.id+'>'+item.name+'</option>');
+                $("select[name='Merchant[alogoType]']").append('<option value='+item.code+'>'+item.code+'</option>');
             });
         },
         error: function (data) {
@@ -89,7 +92,10 @@ merchant.preAddNew = function () {
 merchant.addNew = function () {
     var data = {};
     $('[name^="Merchant"]').each(function() {
-        data[$(this).attr('name')] = $(this).val();
+        if($(this).attr('name') == 'Merchant[optionsRadios]')
+            data[$(this).attr('name')] = $("input[name='Merchant[optionsRadios]']:checked").val();
+        else
+            data[$(this).attr('name')] = $(this).val();
     });
     var url = fly.baseUrl + "/addNewMerChant";
     var data1 = JSON.stringify(data);
@@ -103,9 +109,13 @@ merchant.addNew = function () {
         url: url,
         data: {'data':data1},
         success: function (data) {
-            merchant.showMessage('Insert merchant success!');
-            $('#modal-add-merchant').modal().hide();
-            $('#modalSeachFilter').modal('show');
+            if(data.status)
+            {
+                alert('ahuhu');
+                $('#modal-add-merchant').modal().hide();
+                merchant.showMessage('Insert merchant success!');
+                $('#modalSeachFilter').modal('show');
+            }
         },
         error: function (data) {
             $('.modal-search').css('display','none');
@@ -116,6 +126,43 @@ merchant.addNew = function () {
 merchant.showMessage = function (str) {
     $('#modalSeachFilter .alert-danger').html(str);
 };
+
+merchant.fillInferredAlgoName = function () {
+    var documentType = merchant.documentType;
+    var algotype = merchant.alogoType;
+    var countryCode = merchant.posCountry;
+    var algoKeyName = merchant.algoKeyName;
+    // console.log(documentType + ' ' + algotype + ' '+countryCode+ ' '+  algoKeyName);
+    if(documentType != '' && algotype != '' && countryCode != '' && algoKeyName != '')
+    {
+        var inferredAlgoName = documentType +'-'+algotype+'-'+countryCode+'-'+algoKeyName;
+        $("input[name='Merchant[inferredAlgoName]']").attr('value',inferredAlgoName);
+    }
+    else
+    {
+        // $('#save-merchant').disable();
+        return false;
+    }
+};
+
+
+$(document).on('change','.modal-body',function () {
+    merchant.fillInferredAlgoName();
+});
+$(document).on('change', "select[name='Merchant[documentType]']", function (e) {
+    merchant.documentType = $(this).val();
+});
+$(document).on('change', "select[name='Merchant[alogoType]']", function (e) {
+    merchant.alogoType = $(this).val();
+});
+$(document).on('change', "select[name='Merchant[posCountry]']", function (e) {
+    merchant.posCountry = $(this).val();
+});
+
+$(document).on('change', "input[name='Merchant[algoKeyName]']", function (e) {
+    merchant.algoKeyName = $(this).val();
+});
+
 
 
 
