@@ -20,8 +20,13 @@ merchant.getListCountry = function () {
         success: function (data) {
             listCountry = $.parseJSON(data);
             $.each(listCountry,function (i,item) {
-                $("select[name='Merchant[hqCountry]']").append('<option idHqCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
-                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
+                $("#hqCountry").append('<option idHqCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
+                // $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
+                setTimeout(function () {
+                    $("#hqCountry").select2();
+                },1000)
+
+                // $("select[name='Merchant[posCountry]']").select2();
             });
         },
         error: function (data) {
@@ -80,14 +85,10 @@ merchant.getListAlgoType = function () {
     });
 };
 
-
 merchant.preAddNew = function () {
-    $(".show-modal").load('template/formmerchant.blade.php',function () {
-        var content = $('#modal-add-merchant').parent().html();
-        var modal = $(content);
-        modal.modal('show');
+    $("#modal_container").load('template/formmerchant.blade.php',function () {
+        $('#modal-add-merchant').modal('show');
     });
-    merchant.binData();
 };
 merchant.addNew = function () {
     var data = {};

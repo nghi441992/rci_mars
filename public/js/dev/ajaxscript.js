@@ -13,6 +13,9 @@ $(document).on('click','#sort-status-alpha',function(){
 });
 
 $(document).on('keypress',document,function (e) {
+    if($('body').hasClass('modal-open')){
+        return;
+    }
     if(e.which == 13) {
         seachKeywordFilter();
     }

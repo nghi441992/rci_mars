@@ -170,3 +170,6 @@
         </div>
     </div>
 </div>
+<script>
+    merchant.binData();
+</script>

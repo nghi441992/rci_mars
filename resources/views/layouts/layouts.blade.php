@@ -20,6 +20,8 @@
     <!-- Custom styles for this template -->
     <link href="{{ URL::asset('css/dashboad.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/responsive.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -61,7 +63,7 @@
                 <div class="col-lg-7 col-md-12">
                     <div class="pull-left form-inline" id="area-search-filter">
                         <div class="form-group">
-                            <input type="text" name="search-keyword" class="form-control box-search1"
+                            <input type="text" name="search-keyword" id="search_keyword" class="form-control box-search1"
                                    placeholder="Enter some keywords">
                             <button type="button" class="btn btn-search1" id="search-keyword">Search</button>
                         </div>
@@ -206,6 +208,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="{{ URL::asset('js/bootstrap.js') }}"></script>
 <script src="{{ URL::asset('js/script.js') }}"></script>
 <script src="{{ URL::asset('js/ie10-viewport-bug-workaround.js') }}"></script>

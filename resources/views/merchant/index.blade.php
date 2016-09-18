@@ -138,7 +138,7 @@
     </div>
     <!-- end no data -->
 @endif
-<div class="show-modal"></div>
+<div id="modal_container" class="show-modal"></div>
 @endsection
 
 
