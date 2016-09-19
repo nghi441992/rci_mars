@@ -98,6 +98,7 @@ class MerchantController extends Controller
         }catch (Exception $ex)
         {
             DB::rollback();
+            return response()->json(['status' => false]);
             throw new $ex;
         }
        

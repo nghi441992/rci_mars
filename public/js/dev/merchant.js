@@ -128,6 +128,9 @@ merchant.addNew = function () {
                 $('#modal-add-merchant').modal('hide');
                 merchant.showMessage('Insert merchant success!');
                 $('#modalSeachFilter').modal('show');
+            }else{
+                merchant.showMessage('Error.Please check again!');
+                $('#modalSeachFilter').modal('show');
             }
         },
         error: function (data) {
