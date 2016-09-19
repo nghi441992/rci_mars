@@ -16,11 +16,11 @@
                             <input name="Merchant[merchantName]" type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Scanop Merchant ID</label>
+                            <label>Scanov Merchant ID</label>
                             <input  type="text" class="form-control form-grey">
                         </div>
                         <div class="form-group">
-                            <label>Scanop User ID</label>
+                            <label>Scanov User ID</label>
                             <input type="text" class="form-control form-grey">
                         </div>
                         <div class="form-group">

@@ -132,7 +132,7 @@
             <!-- end have data -->
     <!-- No data-->
     <div class="table-responsive">
-        <p class="text-red">No result. Please try again or refesh brower</p>
+        <p class="text-red">No result. Please try again or refesh browser </p>
     </div>
     <!-- end no data -->
 @endif
