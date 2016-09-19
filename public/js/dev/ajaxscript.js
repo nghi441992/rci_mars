@@ -14,6 +14,15 @@ $(document).on('click','#sort-status-alpha',function(){
 
 $(document).on('keypress',document,function (e) {
     if($('body').hasClass('modal-open')){
+        if(e.which == 13) {
+            var keyword = utils.removeSpecialChar($('#new_keyword').val());
+            if(keyword != '')
+            {
+                merchant.addNewKeyword(keyword);
+                $('#new_keyword').val('');
+            }
+
+        }
         return;
     }
     if(e.which == 13) {

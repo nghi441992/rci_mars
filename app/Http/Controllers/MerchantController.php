@@ -8,6 +8,11 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Mockery\CountValidator\Exception;
 use App\Models\Country;
+use App\Models\InvoiceType;
+use App\Models\ReceiptType;
+use App\Models\ReceiptZonalAlgorithm;
+use App\Models\InvoiceZonalAlgorithm;
+use App\Models\AlgorithmType;
 
 class MerchantController extends Controller
 {
@@ -50,6 +55,8 @@ class MerchantController extends Controller
         try
         {
             $merchant = new Merchant();
+            $receipt = ReceiptType::getCountryReceiptByCode($data['Merchant[documentType]']);
+            $invoice = InvoiceType::getCountryInvoiceByCode($data['Merchant[documentType]']);
             $merchant->name = $data['Merchant[merchantName]'];
             $merchant->country_id = Country::getCountryByCode($data['Merchant[posCountry]'])->id;
             $merchant->city = $data['Merchant[city]'];
@@ -66,6 +73,25 @@ class MerchantController extends Controller
                 $merchant->line_items = '';
             $merchant->inferred_algo_name = $data['Merchant[inferredAlgoName]'];
             $merchant->save();
+            if($receipt != null)
+            {
+                $receiptZonalAlgorithms = new ReceiptZonalAlgorithm();
+                $receiptZonalAlgorithms->name = $data['Merchant[inferredAlgoName]'];
+                $receiptZonalAlgorithms->algorithm_type_id = AlgorithmType::getCountryAlgoByCode($data['Merchant[alogoType]'])->id;
+                $receiptZonalAlgorithms->merchant_id = $merchant->id;
+                $receiptZonalAlgorithms->receipt_type_id = $receipt->id;
+                $receiptZonalAlgorithms->keywords = json_encode($data['Merchant[listKeyWord]']);
+                $receiptZonalAlgorithms->save();
+
+            }else {
+                $invoiceZonalAlgorithms = new InvoiceZonalAlgorithm();
+                $invoiceZonalAlgorithms->name = $data['Merchant[inferredAlgoName]'];
+                $invoiceZonalAlgorithms->algorithm_type_id = AlgorithmType::getCountryAlgoByCode($data['Merchant[alogoType]'])->id;
+                $invoiceZonalAlgorithms->merchant_id = $merchant->id;
+                $invoiceZonalAlgorithms->invoice_type_id = $invoice->id;
+                $invoiceZonalAlgorithms->keywords = json_encode($data['Merchant[listKeyWord]']);
+                $invoiceZonalAlgorithms->save();
+            }
             DB::commit();
             return response()->json(['status' => true]);
             

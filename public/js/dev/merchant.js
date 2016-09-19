@@ -21,10 +21,10 @@ merchant.getListCountry = function () {
             listCountry = $.parseJSON(data);
             $.each(listCountry,function (i,item) {
                 $("#hqCountry").append('<option idHqCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
-                // $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
-                setTimeout(function () {
-                    $("#hqCountry").select2();
-                },1000)
+                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+item.id+' value='+item.code+'>'+item.name+'</option>');
+                // setTimeout(function () {
+                //     $("#hqCountry").select2();
+                // },1000)
 
                 // $("select[name='Merchant[posCountry]']").select2();
             });
@@ -95,6 +95,19 @@ merchant.addNew = function () {
     $('[name^="Merchant"]').each(function() {
         if($(this).attr('name') == 'Merchant[optionsRadios]')
             data[$(this).attr('name')] = $("input[name='Merchant[optionsRadios]']:checked").val();
+        else  if($(this).attr('name') == 'Merchant[listKeyWord]')
+        {
+            var listKeyword = $("ul[name='Merchant[listKeyWord]']").find('li');
+            if(listKeyword.length > 0)
+            {
+                console.log(listKeyword);
+                var arrKeywored = [];
+                $.each( listKeyword, function( key, value ) {
+                    arrKeywored[key] = $(value).attr('data');
+                });
+                data[$(this).attr('name')] = arrKeywored;
+            }
+        }
         else
             data[$(this).attr('name')] = $(this).val();
     });
@@ -112,8 +125,7 @@ merchant.addNew = function () {
         success: function (data) {
             if(data.status)
             {
-                alert('ahuhu');
-                $('#modal-add-merchant').modal().hide();
+                $('#modal-add-merchant').modal('hide');
                 merchant.showMessage('Insert merchant success!');
                 $('#modalSeachFilter').modal('show');
             }
@@ -147,9 +159,10 @@ merchant.edit = function (merchanId) {
         success: function (data) {
             if(data.status)
             {
+                $('#modal').modal('hide');
                 $('#modal-add-merchant').modal().hide();
-                merchant.showMessage('Insert merchant success!');
-                $('#modalSeachFilter').modal('show');
+                // merchant.showMessage('Insert merchant success!');
+                // $('#modalSeachFilter').modal('show');
             }
         },
         error: function (data) {
@@ -158,6 +171,14 @@ merchant.edit = function (merchanId) {
         }
     });
 }
+
+merchant.addNewKeyword = function (keyword) {
+    $('#list_keyword').append('<li data = "'+keyword+'"> <a href="#">'+keyword+'</a> <button type="button" class="close" aria-label="Close"><span aria-hidden="true" onclick="merchant.deleteKeyword(this)">&times;</span></button> </li>');
+};
+
+merchant.deleteKeyword = function (element) {
+    $(element).parent().parent().remove();
+};
 
 merchant.showMessage = function (str) {
     $('#modalSeachFilter .alert-danger').html(str);

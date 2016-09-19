@@ -94,7 +94,7 @@
                             <div class="form-inline">
                                 <div class="radio">
                                     <label>
-                                        <input id="optionsRadiosYes" type="radio" value="1" name="Merchant[optionsRadios]">
+                                        <input id="optionsRadiosYes" selected="selected" type="radio" value="1" name="Merchant[optionsRadios]">
                                         Yes
                                     </label>
                                 </div>
@@ -112,27 +112,11 @@
                         </div>
                         <div class="form-group">
                             <label>Keywords</label>
-                            <ul class="keyword">
-                                <li><a href="#">abadjf</a>
-                                    <button type="button" class="close" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                </li>
-                                <li><a href="#">Friday today</a>
-                                    <button type="button" class="close" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                </li>
-                                <li><a href="#">abadjf</a>
-                                    <button type="button" class="close" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                </li>
-                                <li><a href="#">Friday today</a>
-                                    <button type="button" class="close" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                </li>
+                            <ul class="keyword" name="Merchant[listKeyWord]" id="list_keyword">
                             </ul>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1"
+                            <input type="text" class="form-control" id="new_keyword"
                                    placeholder="Enter more keyword">
                         </div>
                         <div class="list-btn pull-right">
