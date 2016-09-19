@@ -92,6 +92,7 @@ merchant.preAddNew = function () {
 };
 merchant.addNew = function () {
     var data = {};
+    var idMerchant = $("#id_merchant_hidden").val();
     $('[name^="Merchant"]').each(function() {
         if($(this).attr('name') == 'Merchant[optionsRadios]')
             data[$(this).attr('name')] = $("input[name='Merchant[optionsRadios]']:checked").val();
@@ -117,27 +118,54 @@ merchant.addNew = function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
-    })
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {'data':data1},
-        success: function (data) {
-            if(data.status)
-            {
-                $('#modal-add-merchant').modal('hide');
-                merchant.showMessage('Insert merchant success!');
-                $('#modalSeachFilter').modal('show');
-            }else{
-                merchant.showMessage('Error.Please check again!');
-                $('#modalSeachFilter').modal('show');
-            }
-        },
-        error: function (data) {
-            $('.modal-search').css('display','none');
-            console.log('Error:', data);
-        }
     });
+    if(idMerchant != '' && $.isNumeric(idMerchant))
+    {
+        var url = fly.baseUrl + "/editNewMerChant";
+        var data1 = JSON.stringify(data);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {'idMerchant':idMerchant,'data':data1},
+            success: function (data) {
+                if(data.status)
+                {
+                    $('#modal-add-merchant').modal('hide');
+                    merchant.showMessage('Edit merchant success!');
+                    $('#modalSeachFilter').modal('show');
+                }else{
+                    merchant.showMessage('Error.Please check again!');
+                    $('#modalSeachFilter').modal('show');
+                }
+            },
+            error: function (data) {
+                $('.modal-search').css('display','none');
+                console.log('Error:', data);
+            }
+        });
+    }else {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {'data':data1},
+            success: function (data) {
+                if(data.status)
+                {
+                    $('#modal-add-merchant').modal('hide');
+                    merchant.showMessage('Insert merchant success!');
+                    $('#modalSeachFilter').modal('show');
+                }else{
+                    merchant.showMessage('Error.Please check again!');
+                    $('#modalSeachFilter').modal('show');
+                }
+            },
+            error: function (data) {
+                $('.modal-search').css('display','none');
+                console.log('Error:', data);
+            }
+        });
+    }
+
 };
 
 merchant.edit = function (merchantId) {
@@ -157,12 +185,13 @@ merchant.edit = function (merchantId) {
             if(data.status)
             {
                 var dataMerchant = $.parseJSON(data.data);
-                console.log(dataMerchant);
-                $("input[name='Merchant[merchantName]']").val(dataMerchant.name);
-                $("#hqCountry").append('<option idHqCountry = '+dataMerchant.operation_country+' selected="selected" value='+dataMerchant.code+'>'+dataMerchant.name+'</option>');
-                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+dataMerchant.country_id+ ' selected="selected" value='+dataMerchant.code+'>'+dataMerchant.name+'</option>');
-                $("input[name='Merchant[city]']").val(dataMerchant.city);
-                $("input[name='Merchant[postalcode]']").val(dataMerchant.postal_code);
+                console.log(dataMerchant.dataMerchant);
+                $("input[name='Merchant[merchantName]']").val(dataMerchant.dataMerchant.name);
+                $("#hqCountry").append('<option idHqCountry = '+dataMerchant.hqcountry[0].id+' selected="selected" value='+dataMerchant.hqcountry[0].code+'>'+dataMerchant.hqcountry[0].name+'</option>');
+                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+dataMerchant.poscountry[0].id + ' selected="selected" value='+dataMerchant.poscountry[0].code+'>'+dataMerchant.poscountry[0].name+'</option>');
+                $("input[name='Merchant[city]']").val(dataMerchant.dataMerchant.city);
+                $("input[name='Merchant[postalcode]']").val(dataMerchant.dataMerchant.postal_code);
+                $("#id_merchant_hidden").val(dataMerchant.dataMerchant.id);
             }else {
                 merchant.showMessage('Merchant not exits!');
                 $('#modalSeachFilter').modal('show');
@@ -174,6 +203,42 @@ merchant.edit = function (merchantId) {
         }
     });
     
+};
+
+merchant.delete = function () {
+    var merchantId = utils.removeSpecialChar($("#id_merchant_hidden").val());
+    if(merchantId != null && $.isNumeric(merchantId)) {
+        var url = fly.baseUrl + "/deleteMerchant";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {'merchantId':merchantId},
+            success: function (data) {
+                if(data.status)
+                {
+                    $('#modal-add-merchant').modal('hide');
+                    merchant.showMessage('Delete merchant success!');
+                    $('#modalSeachFilter').modal('show');
+                   
+                }else {
+                    merchant.showMessage('Merchant not exits!');
+                    $('#modalSeachFilter').modal('show');
+                }
+            },
+            error: function (data) {
+                $('.modal-search').css('display','none');
+                console.log('Error:', data);
+            }
+        });
+    }else {
+        merchant.showMessage('Error please try again!');
+        $('#modalSeachFilter').modal('show');
+    }
 };
 merchant.addNewKeyword = function (keyword) {
     $('#list_keyword').append('<li data = "'+keyword+'"> <a href="#">'+keyword+'</a> <button type="button" class="close" aria-label="Close"><span aria-hidden="true" onclick="merchant.deleteKeyword(this)">&times;</span></button> </li>');

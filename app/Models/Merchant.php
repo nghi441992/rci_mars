@@ -52,7 +52,8 @@ class Merchant extends Model
              ->select('merchants.id','merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
                  ,'merchants.city','receipt_types.code as receipt_types_code'
                  ,'invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code','merchants.status'
-                 ,'merchants.algo_key_name','merchants.line_items','merchants.inferred_algo_name','merchants.isic_category')
+                 ,'merchants.algo_key_name','merchants.line_items','merchants.inferred_algo_name','merchants.isic_category'
+                ,'merchants.postal_code')
              ->paginate(20);
 //             ->get();
          return $data;
@@ -71,7 +72,7 @@ class Merchant extends Model
             ->select('merchants.id','merchants.name', 'merchants.public', 'users.email', 'countries.code as countries_code '
                 , 'merchants.city', 'receipt_types.code as receipt_types_code', 'invoice_types.code as invoice_types_code'
                 , 'algorithm_types.code as algorithm_types_code','merchants.status','merchants.algo_key_name'
-                ,'merchants.line_items','merchants.inferred_algo_name','merchants.isic_category');
+                ,'merchants.line_items','merchants.inferred_algo_name','merchants.isic_category','merchants.postal_code');
         if($keyword != null)
         {
             $query->where('invoice_zonal_algorithms.keywords','like','%'.$keyword.'%');

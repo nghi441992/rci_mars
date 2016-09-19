@@ -110,10 +110,105 @@ class MerchantController extends Controller
         $merchantId = $rq->input('merchantId');
         if(!is_numeric($merchantId))
             return response()->json(['status' => false]);
-        $data = Merchant::Where('id',$merchantId)->first();
+        $dataMerchant = Merchant::Where('id',$merchantId)->first();
+//        $hqcountry = DB::table('items')->whereIn('id', [1, 2, 3])->get();
+        $hqcountry = Country::Where('id',$dataMerchant->operation_country)->get()->toArray();
+        $poscountry = Country::Where('id',$dataMerchant->country_id)->get()->toArray();
+        $data = array(
+            'hqcountry' => $hqcountry,
+            'poscountry' => $poscountry,
+            'dataMerchant' => $dataMerchant,
+        ) ;
         return response()->json(['status' => true,'data' => json_encode($data)]);
     }
 
+//    Edit merchant
+    public function editMerchant(Request $rq)
+    {
+        $data = json_decode($rq->input('data'),true);
+        $idMerchant = $rq->input('idMerchant');
+        $merchant = Merchant::Where('id',$idMerchant)->first();
+        if($merchant == null)
+            return response()->json(['status' => false]);
+        else {
+            DB::beginTransaction();
+            try
+            {
+                $receipt = ReceiptType::getCountryReceiptByCode($data['Merchant[documentType]']);
+                $invoice = InvoiceType::getCountryInvoiceByCode($data['Merchant[documentType]']);
+                $merchant->name = $data['Merchant[merchantName]'];
+                $merchant->country_id = Country::getCountryByCode($data['Merchant[posCountry]'])->id;
+                if(isset($data['Merchant[city]']) && $data['Merchant[city]'] != null)
+                    $merchant->city = $data['Merchant[city]'];
+                $merchant->public = 1;
+                $merchant->user_id = 1;
+                $merchant->operation_country = Country::getCountryByCode($data['Merchant[hqCountry]'])->id;
+                $merchant->status = 1;
+                if(isset($data['Merchant[postalcode]']) && $data['Merchant[postalcode]'] != null)
+                    $merchant->postal_code = $data['Merchant[postalcode]'];
+                $merchant->captova_category = '';
+                if($merchant->algo_key_name != $data['Merchant[algoKeyName]'])
+                    $merchant->algo_key_name = $data['Merchant[algoKeyName]'];
+                if(isset($data['Merchant[optionsRadios]']) && $data['Merchant[optionsRadios]'] == 1)
+                    $merchant->line_items = $data['Merchant[optionsRadios]'];
+//                else
+//                    $merchant->line_items = '';
+                if(isset($data['Merchant[inferredAlgoName]']) && $data['Merchant[inferredAlgoName]'] != '')
+                    $merchant->inferred_algo_name = $data['Merchant[inferredAlgoName]'];
+                $merchant->save();
+//                if($receipt != null)
+//                {
+//                    $receiptZonalAlgorithms = new ReceiptZonalAlgorithm();
+//                    $receiptZonalAlgorithms->name = $data['Merchant[inferredAlgoName]'];
+//                    $receiptZonalAlgorithms->algorithm_type_id = AlgorithmType::getCountryAlgoByCode($data['Merchant[alogoType]'])->id;
+//                    $receiptZonalAlgorithms->merchant_id = $merchant->id;
+//                    $receiptZonalAlgorithms->receipt_type_id = $receipt->id;
+//                    $receiptZonalAlgorithms->keywords = json_encode($data['Merchant[listKeyWord]']);
+//                    $receiptZonalAlgorithms->save();
+//
+//                }else {
+//                    $invoiceZonalAlgorithms = new InvoiceZonalAlgorithm();
+//                    $invoiceZonalAlgorithms->name = $data['Merchant[inferredAlgoName]'];
+//                    $invoiceZonalAlgorithms->algorithm_type_id = AlgorithmType::getCountryAlgoByCode($data['Merchant[alogoType]'])->id;
+//                    $invoiceZonalAlgorithms->merchant_id = $merchant->id;
+//                    $invoiceZonalAlgorithms->invoice_type_id = $invoice->id;
+//                    $invoiceZonalAlgorithms->keywords = json_encode($data['Merchant[listKeyWord]']);
+//                    $invoiceZonalAlgorithms->save();
+//                }
+                DB::commit();
+                return response()->json(['status' => true]);
+
+            }catch (Exception $ex)
+            {
+                DB::rollback();
+                return response()->json(['status' => false]);
+                throw new $ex;
+            }
+        }
+    }
+
+//    Delete merchant
+    public function deleteMerchant(Request $rq)
+    {
+        $merchantId = $rq->input('merchantId');
+        $merchant = Merchant::Where('id',$merchantId)->first();
+        if($merchant == null)
+            return response()->json(['status' => false]);
+        DB::beginTransaction();
+        try
+        {
+            ReceiptZonalAlgorithm::Where('merchant_id',$merchant->id)->delete();
+            InvoiceZonalAlgorithm::Where('merchant_id',$merchant->id)->delete();
+            $merchant->delete();
+            DB::commit();
+            return response()->json(['status' => true]);
+        }catch (Exception $ex)
+        {
+            DB::rollback();
+            return response()->json(['status' => false]);
+            throw new $ex;
+        }
+    }
     private function setData()
     {
         if(session()->get('keyword') != null)

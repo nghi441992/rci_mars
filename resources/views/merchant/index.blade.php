@@ -36,7 +36,7 @@
                 <td></td>
                 <td>{{$row->countries_code}}</td>
                 <td>{{$row->city}}</td>
-                <td></td>
+                <td>{{$row->postal_code}}</td>
                 <td></td>
                 <td></td>
                 <td class="text-right">{{$row->receipt_types_code != ''?$row->receipt_types_code:$row->invoice_types_code}}</td>

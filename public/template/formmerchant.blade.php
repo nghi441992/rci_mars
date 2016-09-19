@@ -10,6 +10,7 @@
                 <div class="row">
                     <div class="col-lg-6 box-left">
                         <h3>Merchant</h3>
+                        <input type="hidden" id="id_merchant_hidden" value="">
                         <div class="form-group">
                             <label>Merchant Name</label>
                             <input name="Merchant[merchantName]" type="text" class="form-control">
@@ -73,7 +74,7 @@
                             <label>Document Type</label>
                             <div class="bs-select">
                                 <select name="Merchant[documentType]" class="form-control" id="documentType">
-                                    <option value="">Select Doccument type</option>
+                                    <option value="">Select Document type</option>
                                 </select>
                             </div>
                         </div>
@@ -147,7 +148,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-big pull-left btn-delete">Delete Merchant</button>
+                <button type="button" class="btn btn-big pull-left btn-delete" onclick="merchant.delete()">Delete Merchant</button>
                 <button type="button" class="btn btn-big pull-right btn-cancel" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-big pull-right btn-save" id="save-merchant" onclick="merchant.addNew()">Save & Close</button>
             </div>
@@ -156,7 +157,4 @@
 </div>
 <script>
     merchant.binData();
-    function loadData(merchantId) {
-
-    }
 </script>
