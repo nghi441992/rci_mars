@@ -134,6 +134,23 @@
 @endif
 <div id="modal_container" class="show-modal"></div>
 @endsection
+<script>
+    {{--window.onload = function () {--}}
+        {{--var keyword = '<?php isset($keyword)?$keyword:""?>';--}}
+        {{--var alphabet = '<?php isset($alphabet)?$alphabet:""?>';--}}
+        {{--var status = '<?php isset($status)?$status:""?>';--}}
+        {{--console.log(keyword + ' - ' + alphabet + ' -'+status)--}}
+        {{--if(keyword != null)--}}
+            {{--$("#search_keyword").val(keyword);--}}
+        {{--if(alphabet != null)--}}
+            {{--$("input[name=alpha-select]").val(alphabet);--}}
+        {{--if(status != null)--}}
+            {{--$("#select-status option[value='"+status+"']").attr('selected','selected');--}}
+    {{--};--}}
+//    jQuery(document).ready(function () {
+//
+//    });
+</script>
 
 
 
