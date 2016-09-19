@@ -49,7 +49,7 @@ class Merchant extends Model
              ->join('countries','countries.id','=','merchants.country_id')
              ->leftjoin('algorithm_types','algorithm_types.id','=','receipt_zonal_algorithms.algorithm_type_id')
 //             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
-             ->select('merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
+             ->select('merchants.id','merchants.name', 'merchants.public', 'users.email','countries.code as countries_code '
                  ,'merchants.city','receipt_types.code as receipt_types_code'
                  ,'invoice_types.code as invoice_types_code','algorithm_types.code as algorithm_types_code','merchants.status'
                  ,'merchants.algo_key_name','merchants.line_items','merchants.inferred_algo_name','merchants.isic_category')
@@ -68,7 +68,7 @@ class Merchant extends Model
             ->join('countries', 'countries.id', '=', 'merchants.country_id')
             ->leftjoin('algorithm_types', 'algorithm_types.id', '=', 'receipt_zonal_algorithms.algorithm_type_id')
 //             ->leftjoin('algorithm_types','algorithm_types.id','=','invoice_zonal_algorithms.algorithm_type_id')
-            ->select('merchants.name', 'merchants.public', 'users.email', 'countries.code as countries_code '
+            ->select('merchants.id','merchants.name', 'merchants.public', 'users.email', 'countries.code as countries_code '
                 , 'merchants.city', 'receipt_types.code as receipt_types_code', 'invoice_types.code as invoice_types_code'
                 , 'algorithm_types.code as algorithm_types_code','merchants.status','merchants.algo_key_name'
                 ,'merchants.line_items','merchants.inferred_algo_name','merchants.isic_category');

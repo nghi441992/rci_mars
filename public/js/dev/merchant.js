@@ -140,16 +140,10 @@ merchant.addNew = function () {
     });
 };
 
-merchant.edit = function (merchanId) {
-    var data = {};
-    // $('[name^="Merchant"]').each(function() {
-    //     if($(this).attr('name') == 'Merchant[optionsRadios]')
-    //         data[$(this).attr('name')] = $("input[name='Merchant[optionsRadios]']:checked").val();
-    //     else
-    //         data[$(this).attr('name')] = $(this).val();
-    // });
-    var url = fly.baseUrl + "/addNewMerChant";
-    var data1 = JSON.stringify(data);
+merchant.edit = function (merchantId) {
+    merchant.preAddNew();
+    var url = fly.baseUrl + "/getOneMerchant";
+    // var data1 = JSON.stringify(data);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -158,14 +152,20 @@ merchant.edit = function (merchanId) {
     $.ajax({
         type: "POST",
         url: url,
-        data: {'data':data1},
+        data: {'merchantId':merchantId},
         success: function (data) {
             if(data.status)
             {
-                $('#modal').modal('hide');
-                $('#modal-add-merchant').modal().hide();
-                // merchant.showMessage('Insert merchant success!');
-                // $('#modalSeachFilter').modal('show');
+                var dataMerchant = $.parseJSON(data.data);
+                console.log(dataMerchant);
+                $("input[name='Merchant[merchantName]']").val(dataMerchant.name);
+                $("#hqCountry").append('<option idHqCountry = '+dataMerchant.operation_country+' selected="selected" value='+dataMerchant.code+'>'+dataMerchant.name+'</option>');
+                $("select[name='Merchant[posCountry]']").append('<option idPosCountry = '+dataMerchant.country_id+ ' selected="selected" value='+dataMerchant.code+'>'+dataMerchant.name+'</option>');
+                $("input[name='Merchant[city]']").val(dataMerchant.city);
+                $("input[name='Merchant[postalcode]']").val(dataMerchant.postal_code);
+            }else {
+                merchant.showMessage('Merchant not exits!');
+                $('#modalSeachFilter').modal('show');
             }
         },
         error: function (data) {
@@ -173,8 +173,8 @@ merchant.edit = function (merchanId) {
             console.log('Error:', data);
         }
     });
-}
-
+    
+};
 merchant.addNewKeyword = function (keyword) {
     $('#list_keyword').append('<li data = "'+keyword+'"> <a href="#">'+keyword+'</a> <button type="button" class="close" aria-label="Close"><span aria-hidden="true" onclick="merchant.deleteKeyword(this)">&times;</span></button> </li>');
 };
@@ -223,6 +223,21 @@ $(document).on('change', "input[name='Merchant[algoKeyName]']", function (e) {
     merchant.algoKeyName = $(this).val();
 });
 
+$(document).on('change', "input[name='Merchant[optionsRadios]']", function (e) {
+    var valueCheced =  $("input[name='Merchant[optionsRadios]']:checked").val();
+    if(valueCheced == '1')
+    {
+        merchant.algoKeyName = $("input[name='Merchant[algoKeyName]']").val() + '-Y';
+        $("input[name='Merchant[algoKeyName]']").val(merchant.algoKeyName);
+    }
+    else
+    {
+        merchant.algoKeyName = $("input[name='Merchant[algoKeyName]']").val().replace('-Y','');
+        $("input[name='Merchant[algoKeyName]']").val(merchant.algoKeyName);
+    }
+
+
+});
 
 
 

@@ -103,6 +103,16 @@ class MerchantController extends Controller
         }
        
     }
+    
+    // get one merchant by id
+    public function getOneMerchant(Request $rq)
+    {
+        $merchantId = $rq->input('merchantId');
+        if(!is_numeric($merchantId))
+            return response()->json(['status' => false]);
+        $data = Merchant::Where('id',$merchantId)->first();
+        return response()->json(['status' => true,'data' => json_encode($data)]);
+    }
 
     private function setData()
     {

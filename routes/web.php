@@ -24,6 +24,7 @@ Route::group(['middleware' => ['XSS']], function () {
     Route::get('getListCountry','CountryController@getList')->name('getListCountry');
     Route::get('getListDocumentType','DocumentController@getList')->name('getListDocumentType');
     Route::get('getListAlgoType','AlgoController@getList')->name('getListAlgoType');
+    Route::post('getOneMerchant','MerchantController@getOneMerchant',function(Request $rq){})->name('getOneMerchant');
 });
 
 

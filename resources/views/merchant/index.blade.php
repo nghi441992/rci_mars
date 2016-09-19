@@ -50,17 +50,17 @@
                 <td>{{$row->inferred_algo_name}}</td>
                 <td class="text-center">
                     @if ($row->status === 1)
-                        <button type="button" onclick="" class="btn btn-small btn-yellow btn-draft">Draft</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-yellow btn-draft">Draft</button>
                     @elseif ($row->status == 2)
-                        <button type="button" class="btn btn-small btn-green btn-ready">Ready</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-green btn-ready">Ready</button>
                     @elseif ($row->status == 3)
-                        <button type="button" class="btn btn-small btn-prodd">PROD-D</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-prodd">PROD-D</button>
                     @elseif ($row->status == 4)
-                        <button type="button" class="btn btn-small btn-green btn-prodz">Prod-z</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-green btn-prodz">Prod-z</button>
                     @elseif ($row->status == 5)
-                        <button type="button" class="btn btn-small btn-green btn-edit">Edit</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-green btn-edit">Edit</button>
                     @elseif ($row->status == 6)
-                        <button type="button" class="btn btn-small btn-moss btn-update">Update</button>
+                        <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-moss btn-update">Update</button>
                     @endif
                 </td>
             </tr>

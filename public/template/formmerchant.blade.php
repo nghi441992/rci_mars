@@ -122,7 +122,7 @@
                         <div class="list-btn pull-right">
                             <ul>
                                 <li>
-                                    <button type="button" class="btn btn-small btn-draft-pop btn-popup btn-yellow">Draft</button>
+                                    <button type="button" onclick="merchant.edit({{$row->id}})" class="btn btn-small btn-draft-pop btn-popup btn-yellow">Draft</button>
                                 </li>
                                 <li>
                                     <button type="button" class="btn btn-small btn-ready-pop btn-popup">Ready</button>
@@ -156,4 +156,7 @@
 </div>
 <script>
     merchant.binData();
+    function loadData(merchantId) {
+
+    }
 </script>
