@@ -23,24 +23,20 @@ class MerchantController extends Controller
     {
         $listMerchant = Merchant::getListMerchant();
         return view('merchant.index',[
-            'data' => $listMerchant,
-            'keyword' => $this->_keyword,
-            'alphabet' => $this->_alphabet,
-            'status' => $this->_status
+            'data' => $listMerchant
         ]);
     }
     public function search(Request $rq)
     {
         $this->clearData();
+        $keyword = $rq->input('keyword'); session(['keyword' => $keyword]);
+        $alphabet = $rq->input('alphabet');session(['alphabet' => $alphabet]);
+        $status = $rq->input('status');session(['status' => $status]);
         $this->setData();
         $products = Merchant::searchMerchantByKeyword($this->_keyword,$this->_alphabet,$this->_status);
         $products = $products->paginate(20);
         return view('ajax.listmerchant',[
             'data'=>$products,
-            'keyword' => $this->_keyword,
-            'alphabet' => $this->_alphabet,
-            'status' => $this->_status
-
         ]);
     }
     public function pagine(Request $rq)
@@ -50,9 +46,6 @@ class MerchantController extends Controller
         $products = $products->paginate(20);
         return view('merchant.index',[
             'data'=>$products,
-            'keyword' => $this->_keyword,
-            'alphabet' => $this->_alphabet,
-            'status' => $this->_status
         ]);
     }
     public function addNew(Request $rq)
@@ -101,16 +94,16 @@ class MerchantController extends Controller
             }
             DB::commit();
             return response()->json(['status' => true]);
-            
+
         }catch (Exception $ex)
         {
             DB::rollback();
             return response()->json(['status' => false]);
             throw new $ex;
         }
-       
+
     }
-    
+
     // get one merchant by id
     public function getOneMerchant(Request $rq)
     {
@@ -234,5 +227,5 @@ class MerchantController extends Controller
         if(session()->get('status') != null)
             $this->_status = null;
     }
-    
+
 }
